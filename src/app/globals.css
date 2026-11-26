@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* Brand palette sampled from the Robust Managed IT / RJ Computer Networks logo */
+@theme {
+  --color-brand: #eb0b45;
+  --color-brand-mid: #ee3045;
+  --color-brand-coral: #f45c43;
+  --color-brand-hot: #ff0b43;
+  --color-brand-deep: #c4093a;
+}
+
+@theme inline {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-head), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus, #2563eb);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: #111;
+  color: #fff;
+  font-weight: 600;
+  transition: top 0.15s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Flash highlight used by the V2 router / help prefill */
+@keyframes flash-ring {
+  0% { box-shadow: 0 0 0 0 var(--flash, rgba(37, 99, 235, 0.55)); }
+  100% { box-shadow: 0 0 0 18px transparent; }
+}
+.flash {
+  animation: flash-ring 1.1s ease-out 2;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The logo's own gradient: crimson (top-right) to coral (bottom-left). */
+.bg-brand-gradient {
+  background-image: linear-gradient(225deg, #eb0b45 0%, #ee3045 45%, #f45c43 100%);
+}
+.text-brand-gradient {
+  background-image: linear-gradient(225deg, #eb0b45, #f45c43);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* White version of the transparent mark for use on brand-red surfaces. */
+.mark-white {
+  filter: brightness(0) invert(1);
+}
